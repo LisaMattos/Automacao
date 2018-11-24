@@ -1,15 +1,34 @@
-import cucumber.api.PendingException;
+package steps;
+
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.E;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
-
-import java.nio.file.FileSystemNotFoundException;
+import org.junit.Assert;
+import pom.LoginPage;
 
 public class TrelloStep {
+    LoginPage loginPage;
+
     @Dado("^que esteja logado no Trello$")
     public void queEstejaLogadoNoTrello() {
-        System.out.println("queEstejaLogadoNoTrello");
+        loginPage = new LoginPage();
+        loginPage.access();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        loginPage.doLogin("elisasantos7","lisa3008" );
+        Assert.assertEquals("Página Inicial do Trello",
+        loginPage.checkInicialPage());
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @E("^acesse o board$")
