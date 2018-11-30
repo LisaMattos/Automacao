@@ -14,22 +14,10 @@ public class TrelloStep {
     public void queEstejaLogadoNoTrello() {
         loginPage = new LoginPage();
         loginPage.access();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         loginPage.doLogin("elisasantos7","lisa3008" );
-        Assert.assertEquals("Página Inicial do Trello",
-        loginPage.checkInicialPage());
+        Assert.assertEquals("Página Inicial do Trello", loginPage.checkInicialPage());
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
-    }
 
     @E("^acesse o board$")
     public void acesseOBoard() {

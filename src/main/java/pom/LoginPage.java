@@ -7,10 +7,12 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import util.Hook;
 
+import static util.Tools.waitBy;
+
 public class LoginPage {
     @FindBy(how = How.ID, using = "user")
     private WebElement userInput;
-    @FindBy(how = How.ID, using = "passaword")
+    @FindBy(how = How.ID, using = "password")
     private WebElement passwordInput;
     @FindBy(how = How.ID, using = "login")
     private WebElement loginButton;
@@ -27,13 +29,13 @@ public class LoginPage {
     }
     public LoginPage doLogin(String user, String password)
     {
-        userInput.sendKeys(user);
-        passwordInput.sendKeys(password);
-        loginButton.click();
+        waitBy(userInput).sendKeys(user);
+        waitBy(passwordInput).sendKeys(password);
+        waitBy(loginButton).click();
         return this;
     }
     public String checkInicialPage(){
-        return initialPage.getAttribute(("aria-lable"));
+        return waitBy(initialPage).getAttribute(("aria-lable"));
     }
 
 }
